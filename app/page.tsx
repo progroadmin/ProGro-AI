@@ -20,10 +20,13 @@ export default function Home() {
       setLoading(false);
     })();
   }, []);
+<p className="mt-4 text-sm text-gray-500">
+  Contact: <a href="mailto:admin@progro.ai">admin@progro.ai</a> · (504) 666-9166
+</p>
 
   return (
     <main className="p-8">
-      <h1 className="text-2xl font-bold">Visionaire Platform</h1>
+     <h1 className="text-2xl font-bold">ProGo.AI</h1>
       {loading && <p>Loading…</p>}
       {err && <p className="text-red-600">Error: {err}</p>}
       {!loading && !err && (
