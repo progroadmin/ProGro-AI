@@ -2,6 +2,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
+<h1 className="text-2xl font-bold">PROGRO-AI</h1>
+<p className="mt-2 text-sm text-gray-500">
+  Contact: <a href="mailto:admin@progro.ai">admin@progro.ai</a> · (504) 666-9166
+</p>
+
 type Company = { org_id: string; name: string | null };
 
 export default function Home() {

@@ -1,3 +1,6 @@
+git add .
+git commit -m "chore(brand): unify name to PROGRO-AI in UI/docs"
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
