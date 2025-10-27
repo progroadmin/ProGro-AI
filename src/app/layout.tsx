@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Script from "next/script"
 import "./globals.css"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
@@ -30,22 +31,27 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   category: "technology",
-
-  // ✅ Google Search Console verification (server-rendered)
-  verification: {
-    google: "MMA-BeUbej49NapCczpOEDw-yN1nw_bzeCByluPic0w",
-  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
-        <SiteHeader />
-        <div className="pt-16">{children}</div>
-        <SiteFooter />
+      <head>
+        {/* GA4 (loads after hydration) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-3RBM8TCCSS"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-3RBM8TCCSS');
+          `}
+        </Script>
 
-        {/* Server-rendered JSON-LD */}
+        {/* JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema()) }}
@@ -54,6 +60,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
         />
+      </head>
+
+      <body>
+        <SiteHeader />
+        <div className="pt-16">{children}</div>
+        <SiteFooter />
       </body>
     </html>
   )
