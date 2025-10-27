@@ -30,6 +30,11 @@ export const metadata: Metadata = {
   },
   alternates: { canonical: "/" },
   category: "technology",
+
+  // ✅ Google Search Console verification (server-rendered)
+  verification: {
+    google: "MMA-BeUbej49NapCczpOEDw-yN1nw_bzeCByluPic0w",
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
