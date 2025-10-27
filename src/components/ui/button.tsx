@@ -21,7 +21,7 @@ const buttonVariants = cva(
         brandBlueOutline:
           "border border-[#003399] text-[#003399] hover:bg-[#003399] hover:text-white hover-lift",
 
-        // ✅ New alias so `<Button variant="brand" />` is valid
+        // ? Alias so <Button variant="brand" /> is valid everywhere
         brand: "bg-[#009B55] text-white hover:bg-[#00B060] hover-glow hover-lift",
       },
       size: {
@@ -38,10 +38,14 @@ const buttonVariants = cva(
   }
 )
 
+// Widen the prop type so TS accepts "brand" even if types lag
+type ButtonVariant = VariantProps<typeof buttonVariants>["variant"] | "brand"
+
 export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   asChild?: boolean
+  variant?: ButtonVariant
+  size?: VariantProps<typeof buttonVariants>["size"]
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
