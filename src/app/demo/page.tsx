@@ -7,7 +7,10 @@ export default function DemoPage() {
       <p className="text-muted-foreground max-w-2xl">
         Tell us about your team and we’ll set up a walkthrough tailored to your use case.
       </p>
-      <Button variant="brand" className="hover-lift hover-glow w-fit">Start Demo Request</Button>
+      <Button variant="brandGreen" className="hover-lift hover-glow w-fit">
+  Start Demo Request
+</Button>
+
     </div>
   )
 }
