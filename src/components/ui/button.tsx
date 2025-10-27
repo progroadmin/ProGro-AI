@@ -14,10 +14,15 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/90",
         ghost: "hover:bg-muted",
         link: "text-primary underline-offset-4 hover:underline",
+
+        // Brand styles
         brandGold: "bg-[#F9B234] text-[#003399] hover:bg-[#FFB840] hover-glow hover-lift",
         brandGreen: "bg-[#009B55] text-white hover:bg-[#00B060] hover-glow hover-lift",
         brandBlueOutline:
           "border border-[#003399] text-[#003399] hover:bg-[#003399] hover:text-white hover-lift",
+
+        // ✅ New alias so `<Button variant="brand" />` is valid
+        brand: "bg-[#009B55] text-white hover:bg-[#00B060] hover-glow hover-lift",
       },
       size: {
         default: "h-10 px-4 py-2",
