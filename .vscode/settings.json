@@ -1,0 +1,15 @@
+{
+  // Tell VS Code to treat CSS files as Tailwind-aware
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+
+  // Let Tailwind extension find your config (even if it's .ts)
+  "tailwindCSS.experimental.configFile": "./tailwind.config.ts",
+
+  // Enable className autocomplete and IntelliSense
+  "tailwindCSS.classAttributes": ["class", "className", ".*[cC]lass.*"],
+
+  // Disable default CSS validation (prevents @apply and @custom-variant errors)
+  "css.validate": false
+}
