@@ -12,7 +12,7 @@ export default function QuotePage() {
           <Input placeholder="Project name" />
           <Input placeholder="Budget range" />
           <Input placeholder="Timeline" />
-          <Button variant="brand" className="hover-lift hover-glow w-fit">Submit</Button>
+<Button variant="brandGreen" className="hover-lift hover-glow w-fit">Submit</Button>
         </CardContent>
       </Card>
     </div>
