@@ -1,48 +1,29 @@
-type Project = {
-  title: string;
-  location: string;
-  scope: string[];
-  status: "Completed" | "In Progress" | "Precon";
-};
+import type { Metadata } from "next"
+import { breadcrumb } from "../schema"
+import { SITE, title } from "../seo"
 
-const PROJECTS: Project[] = [
-  {
-    title: "Woodmere Youth Center – Interiors Phase II",
-    location: "Harvey, LA",
-    scope: ["Interior improvements", "Painting & finishes", "Project closeout docs"],
-    status: "In Progress",
-  },
-  {
-    title: "NOFD Roofing – Kenner",
-    location: "Kenner, LA",
-    scope: ["Full roof replacement", "Sheet metal", "Flashing"],
-    status: "Completed",
-  },
-];
-
-export const metadata = {
-  title: "Projects | Visionaire Construction",
-  description: "Selected projects across commercial and municipal scopes.",
-};
+export const metadata: Metadata = {
+  title: title("Projects"),
+  description: "Recent Visionaire × ProGro.AI projects showcasing speed, accuracy, and savings.",
+  alternates: { canonical: "/projects" },
+  openGraph: { url: "/projects", images: [{ url: "/progro_logo.png" }] },
+  twitter: { images: ["/progro_logo.png"] },
+}
 
 export default function ProjectsPage() {
+  const bc = breadcrumb([
+    { name: "Home", url: `${SITE.url}/` },
+    { name: "Projects", url: `${SITE.url}/projects` },
+  ])
+
   return (
-    <main className="mx-auto max-w-5xl px-4 py-12">
-      <h1 className="text-4xl font-semibold">Projects</h1>
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {PROJECTS.map((p) => (
-          <article key={p.title} className="rounded-2xl border bg-[--color-background] p-6 shadow-sm">
-            <header className="flex items-center justify-between">
-              <h2 className="text-xl font-medium">{p.title}</h2>
-              <span className="text-xs rounded-full border px-2 py-1">{p.status}</span>
-            </header>
-            <p className="mt-2 text-sm opacity-80">{p.location}</p>
-            <ul className="mt-4 space-y-1 text-sm">
-              {p.scope.map((s) => (<li key={s}>• {s}</li>))}
-            </ul>
-          </article>
-        ))}
-      </div>
+    <main className="container-progro py-20">
+      <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-[#003399]">Projects</h1>
+      <p className="mt-4 max-w-2xl text-[#003399]/80">
+        A snapshot of recent work powered by our AI-driven estimating and project tools.
+      </p>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bc) }} />
     </main>
-  );
+  )
 }

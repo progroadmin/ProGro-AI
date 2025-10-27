@@ -2,19 +2,15 @@ import type { Metadata } from "next"
 import "./globals.css"
 import SiteHeader from "@/components/site-header"
 import SiteFooter from "@/components/site-footer"
-import { SITE, title, ogImage } from "./seo"
+import { SITE, ogImage } from "./seo"
+import { orgSchema, websiteSchema } from "./schema"
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: {
-    default: SITE.name,
-    template: `%s | ${SITE.name}`,
-  },
+  title: { default: SITE.name, template: `%s | ${SITE.name}` },
   description: SITE.description,
   applicationName: SITE.name,
-  keywords: [
-    "construction", "AI", "quoting", "project management", "Visionaire", "ProGro.AI"
-  ],
+  keywords: ["construction","AI","quoting","project management","Visionaire","ProGro.AI"],
   authors: [{ name: "ProGro.AI" }],
   creator: "ProGro.AI",
   publisher: "ProGro.AI",
@@ -32,9 +28,7 @@ export const metadata: Metadata = {
     description: SITE.description,
     images: [ogImage],
   },
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
   category: "technology",
 }
 
@@ -45,6 +39,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteHeader />
         <div className="pt-16">{children}</div>
         <SiteFooter />
+
+        {/* Server-rendered JSON-LD */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema()) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema()) }}
+        />
       </body>
     </html>
   )

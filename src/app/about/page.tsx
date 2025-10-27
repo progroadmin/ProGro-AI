@@ -1,9 +1,21 @@
-export const metadata = {
-  title: "About | Visionaire Construction",
-  description: "Licensed GC serving LA & TX — commercial, municipal, and multi-family projects.",
-};
+import type { Metadata } from "next"
+import { breadcrumb } from "../schema"
+import { SITE, title } from "../seo"
+
+export const metadata: Metadata = {
+  title: title("About"),
+  description: "Learn about Visionaire Construction and our mission to modernize construction ops.",
+  alternates: { canonical: "/about" },        // ✅ page-specific canonical
+  openGraph: { url: "/about", images: [{ url: "/progro_logo.png" }] },
+  twitter: { images: ["/progro_logo.png"] },
+}
 
 export default function AboutPage() {
+  const bc = breadcrumb([
+    { name: "Home", url: `${SITE.url}/` },
+    { name: "About", url: `${SITE.url}/about` },
+  ])
+
   return (
     <main className="mx-auto max-w-5xl px-4 py-12 space-y-8">
       <section>
@@ -11,36 +23,15 @@ export default function AboutPage() {
         <p className="mt-4 text-balance leading-relaxed">
           We’re a licensed general contractor delivering commercial, municipal, and light-industrial
           improvements. From RFP response through closeout, our team handles scopes like interior finishes,
-          roofing, doors & hardware, and unit turnovers—with DBE certifications in New Orleans and Houston.
+          roofing, doors &amp; hardware, and unit turnovers—with DBE certifications in New Orleans and Houston.
         </p>
       </section>
 
-      <section className="grid gap-6 md:grid-cols-3">
-        <div className="rounded-2xl p-6 shadow-sm bg-[--color-background] border">
-          <h3 className="text-lg font-medium">What we do</h3>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li>• Commercial & Municipal Renovations</li>
-            <li>• Roofing (installs, replacements, repairs)</li>
-            <li>• Interior/Exterior Painting & Drywall</li>
-            <li>• Property Maintenance & Turnovers</li>
-          </ul>
-        </div>
-        <div className="rounded-2xl p-6 shadow-sm bg-[--color-background] border">
-          <h3 className="text-lg font-medium">Why owners choose us</h3>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li>• Fast, clean mobilization</li>
-            <li>• Clear pricing & change-order control</li>
-            <li>• Closeout docs organized & on time</li>
-          </ul>
-        </div>
-        <div className="rounded-2xl p-6 shadow-sm bg-[--color-background] border">
-          <h3 className="text-lg font-medium">Certifications</h3>
-          <ul className="mt-3 space-y-2 text-sm">
-            <li>• DBE — New Orleans & Houston</li>
-            <li>• Licensed GC — Louisiana</li>
-          </ul>
-        </div>
-      </section>
+      {/* ✅ Server-rendered Breadcrumb JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(bc) }}
+      />
     </main>
-  );
+  )
 }
