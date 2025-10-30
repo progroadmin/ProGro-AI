@@ -1,67 +1,71 @@
-import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
+﻿// tailwind.config.ts
+import type { Config } from "tailwindcss"
+import { fontFamily } from "tailwindcss/defaultTheme"
+import plugin from "tailwindcss/plugin"; // 👈 Ensure this import is here
 
-const config = {
-  // Use class-based dark mode with the 'dark' selector
-  darkMode: ["class", "dark"],
-
-  content: [
-    "./src/app/**/*.{ts,tsx}",
+const config: Config = {
+  darkMode: ["class"],
+  content: [ // 👈 This required 'content' property is now clearly here
+    "./src/pages/**/*.{ts,tsx}",
     "./src/components/**/*.{ts,tsx}",
+    "./src/app/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
-
   theme: {
     container: {
       center: true,
       padding: "2rem",
-      screens: { "2xl": "1280px" },
+      screens: {
+        "2xl": "1400px",
+      },
     },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        // 🌿 ProGro / Visionaire Brand Palette
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#0B6E4F", // Deep green (Visionaire core)
+          foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#F9B234", // Brand gold
+          foreground: "#003399", // Deep navy text contrast
         },
         accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#2B7A78", // Muted teal accent
+          foreground: "#FFFFFF",
         },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
+        muted: {
+          DEFAULT: "#F5F5F5",
+          foreground: "#737373",
         },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
+        background: "#FFFFFF",
+        foreground: "#1C1C1C",
+
+        // UI/Neutral scales
+        border: "#E5E7EB",
+        input: "#E5E7EB",
+        ring: "#0B6E4F",
+
+        // Semantic colors
+        destructive: {
+          DEFAULT: "#DC2626",
+          foreground: "#FFFFFF",
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        lg: "0.5rem",
+        md: "0.375rem",
+        sm: "0.25rem",
+      },
+      fontFamily: {
+        // 👈 Assuming you have custom font variables defined
+        sans: ["var(--font-geist-sans)", ...fontFamily.sans],
+        mono: ["var(--font-geist-mono)", ...fontFamily.mono],
       },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "var(--radix-accordion-content-height)" }, // 👈 Completed the keyframe value
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
@@ -74,13 +78,13 @@ const config = {
       },
     },
   },
-
+  // 👈 CRITICAL: The 'plugins' property MUST exist in the main object
   plugins: [
     require("tailwindcss-animate"),
     plugin(({ addVariant }) => {
       addVariant("hocus", ["&:hover", "&:focus"]);
     }),
   ],
-} satisfies Config;
+} satisfies Config // 👈 The 'satisfies Config' ensures we check against the full type
 
-export default config;
+export default config

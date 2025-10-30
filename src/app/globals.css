@@ -1,117 +1,61 @@
-@import "tailwindcss";
+/* --- Tailwind layers (REQUIRED, in this order) --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/* Tailwind v4 helper so `.dark …` works */
-@custom-variant dark (&:is(.dark *));
-
-/* -----------------------------------------------------------------------------
-   Map our CSS variables to Tailwind v4 tokens.
-   This is what makes classes like bg-background, text-foreground,
-   border-border, outline-ring/50, etc. actually work.
------------------------------------------------------------------------------ */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-destructive: var(--destructive);
-
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-}
-
-/* -----------------------------------------------------------------------------
-   ProGro brand variables (logo colors only)
------------------------------------------------------------------------------ */
-:root {
-  --brand-white: #ffffff;
-  --brand-blue:  #003399;
-  --brand-gold:  #f9b234;
-  --brand-green: #009b55;
-
-  /* Surfaces & text */
-  --background: var(--brand-white);
-  --foreground: var(--brand-blue);
-
-  /* Theme tokens */
-  --primary: var(--brand-blue);
-  --primary-foreground: #ffffff;
-
-  --secondary: var(--brand-gold);
-  --secondary-foreground: var(--brand-blue);
-
-  --accent: var(--brand-green);
-  --accent-foreground: #ffffff;
-
-  --muted: color-mix(in oklab, #ffffff 85%, var(--brand-blue) 15%);
-  --muted-foreground: color-mix(in oklab, var(--brand-blue) 70%, #6b7280 30%);
-
-  --destructive: #ef4444;
-
-  --border: color-mix(in oklab, #ffffff 85%, var(--brand-blue) 15%);
-  --input: var(--border);
-  --ring: color-mix(in oklab, var(--brand-blue) 45%, var(--brand-gold) 55%);
-
-  --card: var(--brand-white);
-  --card-foreground: var(--brand-blue);
-  --popover: var(--brand-white);
-  --popover-foreground: var(--brand-blue);
-}
-
-/* (Optional) dark mode palette using the same brand colors */
-.dark {
-  --background: color-mix(in oklab, var(--brand-blue) 92%, #000 8%);
-  --foreground: #ffffff;
-
-  --card: color-mix(in oklab, var(--brand-blue) 92%, #000 8%);
-  --card-foreground: #ffffff;
-  --popover: color-mix(in oklab, var(--brand-blue) 92%, #000 8%);
-  --popover-foreground: #ffffff;
-
-  --primary: var(--brand-gold);
-  --primary-foreground: var(--brand-blue);
-
-  --secondary: var(--brand-green);
-  --secondary-foreground: #ffffff;
-
-  --muted: color-mix(in oklab, var(--brand-blue) 75%, #000 25%);
-  --muted-foreground: #c7d2fe;
-
-  --border: color-mix(in oklab, var(--brand-blue) 70%, #000 30%);
-  --input: var(--border);
-  --ring: color-mix(in oklab, var(--brand-gold) 65%, var(--brand-green) 35%);
-}
-
-/* Base styles that rely on the token classes above */
+/* --- Optional: base tweaks --- */
 @layer base {
-  * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
+  html, body {
+    @apply antialiased;
+  }
 }
 
-/* Utilities */
+/* --- Your custom utilities & effects --- */
 @layer utilities {
-  .hover-lift { @apply transition-transform duration-150 hover:scale-[1.02] active:scale-[0.99]; }
-  .hover-glow { box-shadow: 0 10px 26px rgba(249, 178, 52, 0.25); }
-  .hover-glow:hover { box-shadow: 0 14px 40px rgba(249, 178, 52, 0.42); }
-  .container-progro { @apply mx-auto max-w-6xl px-4; }
-}
+  /* Micro-interactions */
+  .hover-lift { transition: transform .2s, box-shadow .2s; }
+  .hover-lift:hover { transform: translateY(-2px); box-shadow: 0 12px 20px rgba(0,0,0,.10); }
 
-/* Small fade for the hero logo */
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-.animate-fadeIn { animation: fadeIn 0.8s ease-out forwards; }
+  .hover-glow { transition: box-shadow .2s; }
+  .hover-glow:hover { box-shadow: 0 0 0 6px rgba(249,178,52,.20); } /* gold glow */
+
+  /* Animated underline for nav links */
+  .underline-fx {
+    background-image: linear-gradient(#F9B234,#F9B234);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    transition: background-size .25s ease;
+  }
+  .underline-fx:hover { background-size: 100% 2px; }
+
+  /* Brand gradients */
+  .brand-gradient {
+    background-image: linear-gradient(90deg, #0B6E4F 0%, #2B7A78 50%, #003399 100%);
+  }
+  .brand-gradient-gold {
+    background-image: linear-gradient(90deg, #F9B234 0%, #FFD166 100%);
+  }
+
+  /* Gradient text helper */
+  .text-gradient {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Soft glassy surface card */
+  .surface {
+    background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.92));
+    backdrop-filter: blur(8px);
+    border: 1px solid rgb(229 231 235 / .8); /* #E5E7EB */
+    box-shadow: 0 10px 30px rgba(2, 32, 71, .06);
+  }
+
+  /* Small fade-in for logo/hero */
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in { animation: fade-in 0.6s ease-out both; }
+}

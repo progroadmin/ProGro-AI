@@ -1,4 +1,4 @@
-export const SITE = {
+﻿export const SITE = {
   name: "Visionaire × ProGro.AI",
   description:
     "A smarter way to manage, quote, and grow construction projects — powered by AI & precision design.",
@@ -10,3 +10,5 @@ export function title(template?: string) {
 }
 
 export const ogImage = "/progro_logo.png";
+
+

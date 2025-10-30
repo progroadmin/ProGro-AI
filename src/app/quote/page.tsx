@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { breadcrumb } from "../schema"
 import { SITE, title } from "../seo"
 import { Card, CardContent } from "@/components/ui/card"
@@ -40,3 +40,5 @@ export default function QuotePage() {
     </main>
   )
 }
+
+

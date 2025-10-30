@@ -1,11 +1,11 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { breadcrumb } from "../schema"
 import { SITE, title } from "../seo"
 
 export const metadata: Metadata = {
   title: title("About"),
   description: "Learn about Visionaire Construction and our mission to modernize construction ops.",
-  alternates: { canonical: "/about" },        // ✅ page-specific canonical
+  alternates: { canonical: "/about" },        // œ… page-specific canonical
   openGraph: { url: "/about", images: [{ url: "/progro_logo.png" }] },
   twitter: { images: ["/progro_logo.png"] },
 }
@@ -27,7 +27,7 @@ export default function AboutPage() {
         </p>
       </section>
 
-      {/* ✅ Server-rendered Breadcrumb JSON-LD */}
+      {/* œ… Server-rendered Breadcrumb JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(bc) }}
@@ -35,3 +35,5 @@ export default function AboutPage() {
     </main>
   )
 }
+
+

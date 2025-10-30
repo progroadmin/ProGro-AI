@@ -1,4 +1,4 @@
-import type { MetadataRoute } from "next";
+﻿import type { MetadataRoute } from "next";
 import { SITE } from "./seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,3 +10,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/terms`,   lastModified: now, changeFrequency: "monthly", priority: 0.4 },
   ];
 }
+
+

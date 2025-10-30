@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { breadcrumb } from "../schema"
 import { SITE, title } from "../seo"
 import { Button } from "@/components/ui/button"
@@ -31,3 +31,5 @@ export default function DemoPage() {
     </main>
   )
 }
+
+

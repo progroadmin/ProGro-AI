@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import Script from "next/script"
 import { breadcrumb } from "../schema"
 import { SITE, title } from "../seo"
@@ -30,3 +30,5 @@ export default function ContactPage() {
     </main>
   )
 }
+
+

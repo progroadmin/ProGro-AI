@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { title } from "../seo"
 
 export const metadata: Metadata = {
@@ -15,8 +15,10 @@ export default function SearchPage() {
         Site search coming soon. In the meantime, reach out via our Contact page.
       </p>
       <form action="/search" method="GET" className="mt-8">
-        <input name="q" placeholder="Try: estimate, quote, projects…" className="border px-4 py-2 rounded-md w-full max-w-lg"/>
+        <input name="q" placeholder="Try: estimate, quote, projects€¦" className="border px-4 py-2 rounded-md w-full max-w-lg"/>
       </form>
     </main>
   )
 }
+
+

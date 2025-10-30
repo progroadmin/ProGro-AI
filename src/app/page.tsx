@@ -1,44 +1,67 @@
-import type { Metadata } from "next"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { title } from "./seo"
-
-export const metadata: Metadata = {
-  title: title("Home"),
-  description:
-    "Explore Visionaire × ProGro.AI — fast quotes, organized projects, and AI precision for construction teams.",
-  alternates: { canonical: "/" },
-  openGraph: { url: "/", images: [{ url: "/progro_logo.png" }] },
-  twitter: { images: ["/progro_logo.png"] },
-}
+﻿import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function HomePage() {
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white text-center px-6 py-24">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-white via-white to-[#F9F9F9]" />
-      <div className="mb-10 relative">
-        <div className="absolute inset-0 blur-3xl opacity-25 bg-[radial-gradient(circle_at_center,rgba(249,178,52,0.4),transparent_70%)]" />
-        <img src="/progro_logo.png" alt="ProGro.AI Logo" className="h-28 md:h-32 w-auto mx-auto relative z-10 animate-fadeIn" />
+    <main className="relative">
+      {/* Soft brand background blob */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="brand-gradient opacity-10 blur-3xl h-[40vh] w-[80vw] mx-auto mt-10 rounded-full" />
       </div>
 
-      <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#003399]">
-        Visionaire × <span className="text-[#009B55]">ProGro.AI</span>
-      </h1>
+      <section className="container mx-auto px-4 py-20 text-center">
+        {/* ✅ Logo - this is where your image is used */}
+        <Image
+          src="/progro_logo.png"
+          alt="ProGro.AI logo"
+          width={100}
+          height={100}
+          className="mx-auto mb-8 drop-shadow-md animate-fade-in"
+          priority
+        />
 
-      <p className="mt-4 text-lg md:text-xl text-[#003399]/80 max-w-2xl mx-auto leading-relaxed">
-        A smarter way to manage, quote, and grow your construction projects — powered by{" "}
-        <span className="text-[#009B55] font-semibold">AI & precision design.</span>
-      </p>
+        {/* Headline */}
+        <h1 className="mx-auto max-w-3xl text-4xl md:text-6xl font-extrabold leading-tight">
+          <span className="text-gradient brand-gradient">Visionaire</span>
+          <span className="mx-2"> × </span>
+          <span className="text-gradient brand-gradient">ProGro.AI</span>
+        </h1>
 
-      <div className="mt-10 flex flex-wrap justify-center gap-4">
-        <Link href="/demo"><Button variant="brandGold" size="lg">Request Demo</Button></Link>
-        <Link href="/quote"><Button variant="brandGreen" size="lg">Get Quote</Button></Link>
-        <Link href="/contact"><Button variant="brandBlueOutline" size="lg">Contact Us</Button></Link>
-      </div>
+        {/* Subhead */}
+        <p className="mx-auto mt-6 max-w-2xl text-slate-600 text-lg md:text-xl">
+          A smarter way to manage, quote, and grow your construction projects — powered by{" "}
+          <span className="font-semibold text-slate-900">AI</span> &{" "}
+          <span className="font-semibold text-slate-900">precision design</span>.
+        </p>
 
-      <div className="absolute bottom-10 text-sm md:text-base text-[#003399]/70">
-        Built with ❤️ by Visionaire + ProGro.AI
-      </div>
+        {/* Buttons */}
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <Button variant="brandGreen" className="rounded-xl hover-lift hover-glow">
+            Request Demo
+          </Button>
+          <Button variant="brandGold" className="rounded-xl hover-lift">
+            Get Quote
+          </Button>
+          <Button variant="outline" className="rounded-xl">
+            Contact Us
+          </Button>
+        </div>
+
+        {/* Optional metrics section */}
+        <div className="mx-auto mt-16 max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            ["2× faster", "bids out the door"],
+            ["30% fewer", "change orders"],
+            ["All-in-one", "CRM + Jobs"],
+            ["Multi-tenant", "ready"],
+          ].map(([a, b]) => (
+            <div key={a} className="surface rounded-xl p-4">
+              <div className="text-sm text-slate-500">{b}</div>
+              <div className="text-lg font-semibold">{a}</div>
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
-  )
+  );
 }

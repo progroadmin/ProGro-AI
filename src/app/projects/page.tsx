@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+﻿import type { Metadata } from "next"
 import { breadcrumb } from "../schema"
 import { SITE, title } from "../seo"
 
@@ -27,3 +27,5 @@ export default function ProjectsPage() {
     </main>
   )
 }
+
+

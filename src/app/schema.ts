@@ -1,4 +1,4 @@
-import { SITE } from "./seo"
+﻿import { SITE } from "./seo"
 
 export function orgSchema() {
   return {
@@ -36,3 +36,5 @@ export function breadcrumb(items: Array<{ name: string; url: string }>) {
     })),
   }
 }
+
+
