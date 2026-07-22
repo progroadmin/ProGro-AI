@@ -21,9 +21,9 @@ const config: Config = {
     },
     extend: {
       colors: {
-        // 🌿 ProGro / Visionaire Brand Palette
+        // ProGro brand palette
         primary: {
-          DEFAULT: "#0B6E4F", // Deep green (Visionaire core)
+          DEFAULT: "#0B6E4F", // Deep green
           foreground: "#FFFFFF",
         },
         secondary: {
