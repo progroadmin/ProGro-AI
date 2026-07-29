@@ -42,7 +42,6 @@ const FUTURE = [
 ];
 
 const BOOKING_URL = process.env.NEXT_PUBLIC_DEMO_BOOKING_URL || "";
-const DEMO_URL = "https://demo.progro.ai/?explore=1";
 const APP_URL = "https://app.progro.ai";
 
 type Tri = "yes" | "no" | "";
@@ -118,9 +117,11 @@ export default function IntakeWorksheet() {
     return (
       <div className="rounded-3xl bg-white p-8 shadow-xl shadow-slate-900/5 ring-1 ring-slate-200 text-center">
         <h2 className="text-2xl font-bold text-slate-900">Thank you — we’ve got your requirements.</h2>
-        <p className="mt-3 text-slate-600">We’ll review what you need and prepare a tailored recommendation. In the meantime:</p>
+        <p className="mt-3 text-slate-600">
+          We’ve received your intake. We’ll email you when your 7-day trial workspace is ready.
+        </p>
+        <p className="mt-3 text-sm text-slate-500">Your trial includes one project.</p>
         <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
-          <a href={DEMO_URL} className="button-primary">Explore the Demo Now</a>
           {BOOKING_URL ? (
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="button-secondary">Book a Time to Talk</a>
           ) : (
@@ -250,9 +251,9 @@ export default function IntakeWorksheet() {
         <button type="submit" className="button-primary" disabled={state === "sending"}>
           {state === "sending" ? "Submitting…" : "Send my requirements"}
         </button>
-        <a href={DEMO_URL} className="text-sm font-semibold text-emerald-700 hover:text-emerald-800">
-          or explore the demo now →
-        </a>
+        <p className="text-sm text-slate-500">
+          Required to unlock your 7-day trial.
+        </p>
       </div>
       <p className="text-xs leading-5 text-slate-500">
         By submitting, you agree that ProGro may contact you about your request. See our <a href="/privacy" className="underline">Privacy Policy</a>.

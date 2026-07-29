@@ -13,7 +13,8 @@ export default function GetStartedPage() {
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Tell us what you need</h1>
         <p className="mt-4 text-lg text-slate-600">
           A few questions about how your company runs — divisions, workflows, and the tools you use today.
-          We&apos;ll tailor ProGro to fit, and you can explore the live demo the moment you&apos;re done.
+          Completing this intake unlocks your 7-day ProGro trial, which includes one project.
+          We&apos;ll email your workspace access once it&apos;s ready.
         </p>
       </div>
       <div className="mt-10">

@@ -44,12 +44,12 @@ export default function HomePage() {
               ProGro brings your projects, bids, billing, labor, contacts, equipment, and job records into one contractor-focused workspace.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-              <a href="https://demo.progro.ai/?explore=1" className="button-primary">
-                Launch live demo <ArrowRight className="h-4 w-4" />
-              </a>
+              <Link href="/get-started" className="button-primary">
+                Start your free trial <ArrowRight className="h-4 w-4" />
+              </Link>
               <Link href="/product" className="button-secondary-dark">Explore the platform</Link>
             </div>
-            <p className="mt-5 text-sm text-slate-400">Explore on your own. No signup, credit card, or sales call required.</p>
+            <p className="mt-5 text-sm text-slate-400">Complete a short intake to unlock your 7-day trial. One project included.</p>
           </div>
 
           <div className="relative">
@@ -128,11 +128,11 @@ export default function HomePage() {
           <div className="max-w-2xl">
             <p className="text-sm font-bold uppercase tracking-[.18em] text-emerald-100">See it with your workflow</p>
             <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">See ProGro for yourself.</h2>
-            <p className="mt-4 text-emerald-50/85">Open the interactive sample workspace and explore the platform at your own pace.</p>
+            <p className="mt-4 text-emerald-50/85">Complete a short intake and we&apos;ll prepare your 7-day trial workspace, configured for how you work.</p>
           </div>
-          <a href="https://demo.progro.ai/?explore=1" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#F4B740] px-6 py-3.5 font-bold text-[#16211E] transition hover:bg-[#FFD16A] lg:mt-0">
-            Launch live demo <ArrowRight className="h-4 w-4" />
-          </a>
+          <Link href="/get-started" className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#F4B740] px-6 py-3.5 font-bold text-[#16211E] transition hover:bg-[#FFD16A] lg:mt-0">
+            Start your free trial <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </section>
     </main>

@@ -1,4 +1,4 @@
-﻿import type { MetadataRoute } from "next";
+import type { MetadataRoute } from "next";
 import { SITE } from "./seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/`,        lastModified: now, changeFrequency: "weekly",  priority: 1 },
     { url: `${base}/product`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${base}/solutions`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${base}/demo`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/get-started`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/contact`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/privacy`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },

@@ -1,2 +1,2 @@
 import { redirect } from "next/navigation";
-export default function QuotePage() { redirect("/demo"); }
+export default function QuotePage() { redirect("/get-started"); }
