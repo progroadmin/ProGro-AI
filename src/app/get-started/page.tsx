@@ -11,10 +11,15 @@ export default function GetStartedPage() {
     <main className="mx-auto max-w-3xl px-4 py-16 sm:py-24">
       <div className="text-center">
         <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">Tell us what you need</h1>
+        {/* Copy matches what actually happens today. The previous text
+            promised a 7-day trial workspace and an email delivering
+            access — trial provisioning is deferred out of T2, so nothing
+            creates that workspace or sends that mail. The success screen
+            was corrected in the same commit; this is the same claim, one
+            file earlier. */}
         <p className="mt-4 text-lg text-slate-600">
           A few questions about how your company runs — divisions, workflows, and the tools you use today.
-          Completing this intake unlocks your 7-day ProGro trial, which includes one project.
-          We&apos;ll email your workspace access once it&apos;s ready.
+          We&apos;ll review what you send and follow up by email about next steps.
         </p>
       </div>
       <div className="mt-10">
