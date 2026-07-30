@@ -1,7 +1,7 @@
 "use client";
 
 // ============================================================
-// T3 — INTAKE WORKSHEET   [REV 4]
+// T3 — INTAKE WORKSHEET   [REV 5]
 //
 // CUTOVER, NOT ADDITION. The old submit_website_lead call into ozvyf is
 // REMOVED in this same file, per the frozen decision in T3 REV 4 §0. A
@@ -30,6 +30,16 @@
 //
 // 5. SUCCESS COPY no longer promises a trial workspace. Provisioning is
 //    deferred out of T2 and nothing sends that email yet.
+//
+// CHANGES FROM REV 4 — presentation only, no intake behaviour.
+//
+// The success screen no longer renders its own heading and message. The
+// page shell above it owns the submitted state now, so the h1 and intro
+// swap together with the form instead of the page still inviting a
+// visitor to fill in something that is no longer there — and the
+// follow-up promise is stated once rather than twice on one screen.
+// This component reports success via onSubmitted and renders only the
+// onward action.
 //
 // CHANGES FROM REV 3 — one blocker, one correction.
 //
@@ -165,7 +175,9 @@ function canon(v: unknown): string {
 
 type Tri = "yes" | "no" | "";
 
-export default function IntakeWorksheet() {
+export default function IntakeWorksheet(
+  { onSubmitted }: { onSubmitted?: () => void } = {},
+) {
   // restoring / restore_error are distinct states on purpose: an
   // unknown server-side draft must never be submittable.
   const [state, setState] = useState<
@@ -462,6 +474,7 @@ export default function IntakeWorksheet() {
         }
       }
       setState("sent");
+      onSubmitted?.();
     } catch (err) {
       setState("error");
       if (err instanceof IntakeError && err.code === "did_not_advance") {
@@ -477,16 +490,11 @@ export default function IntakeWorksheet() {
   }
 
   if (state === "sent") {
+    // Heading and message live in the page shell, which swaps them when
+    // onSubmitted fires. Only the onward action belongs here.
     return (
       <div className="rounded-3xl bg-white p-8 shadow-xl shadow-slate-900/5 ring-1 ring-slate-200 text-center">
-        <h2 className="text-2xl font-bold text-slate-900">Thank you — we&rsquo;ve received your requirements.</h2>
-        {/* Copy matches what actually happens. Trial provisioning is not
-            built, and the old text promised a workspace and an email
-            that nothing sends. */}
-        <p className="mt-3 text-slate-600">
-          Our team will review your submission and follow up by email about next steps.
-        </p>
-        <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:justify-center">
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
           {BOOKING_URL ? (
             <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer" className="button-secondary">Book a Time to Talk</a>
           ) : (
