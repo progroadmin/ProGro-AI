@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer";
+import AttributionCapture from "@/components/attribution-capture";
 import { geistSans, geistMono } from "./fonts";
 import { SITE, ogImage } from "./seo";
 
@@ -19,6 +20,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-[100dvh] bg-white text-slate-900 antialiased font-sans">
+        {/* First touch is captured on EVERY page, not just /get-started.
+            A visitor landing on / with ?utm_source= and clicking through
+            has already lost the parameters by the time the worksheet
+            mounts, and attribution_events is written once and immutable.
+            Renders null; captureFirstTouch() skips the write when a
+            value already exists, so it cannot overwrite the real first
+            touch on later navigation. */}
+        <AttributionCapture />
         <SiteHeader />
         {children}
         <SiteFooter />
